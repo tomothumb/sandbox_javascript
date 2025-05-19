@@ -1,27 +1,30 @@
-// import React from 'react'
 import { useStore } from './store'
 import './App.css'
+import TodoForm from './components/TodoForm'
+import TodoList from './components/TodoList'
+import TodoFooter from './components/TodoFooter'
+import TodoStats from './components/TodoStats'
+import TodoFilter from './components/TodoFilter'
 
 function App() {
-  const { count, increment, decrement, reset } = useStore()
+  const hasTodos = useStore(state => state.hasTodos())
 
   return (
     <div className="App">
-      <h1>Zustand State Management Example</h1>
-      <div className="card">
-        <button onClick={increment}>
-          Count is {count}
-        </button>
-        <button onClick={decrement}>
-          Decrement
-        </button>
-        <button onClick={reset}>
-          Reset
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
+      <h1>Zustand Todo List Example</h1>
+
+      <TodoForm />
+
+      {hasTodos && <TodoFilter />}
+
+      <TodoList />
+
+      {hasTodos && (
+        <>
+          <TodoStats />
+          <TodoFooter />
+        </>
+      )}
     </div>
   )
 }
