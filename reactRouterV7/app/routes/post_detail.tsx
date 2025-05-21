@@ -11,6 +11,19 @@ export async function loader({ params }: Route.LoaderArgs) {
   // };
 }
 
+// export async function clientLoader({
+//    serverLoader,
+//    params,
+//  }: Route.ClientLoaderArgs) {
+//   const res = await fetchPost(params.postId);
+//   const client_posts = await res.json();
+//   // return client_posts
+//   // const serverData = await serverLoader();
+//   // return [
+//   //   ...serverData,
+//   //   ...client_posts.filter(cp => !serverData.find(sd => sd.post_id === cp.post_id))
+//   // ];
+// }
 
 export default function PageComponent({
   loaderData,

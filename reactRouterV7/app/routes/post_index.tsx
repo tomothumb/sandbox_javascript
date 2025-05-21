@@ -18,10 +18,11 @@ export async function clientLoader({
    }: Route.ClientLoaderArgs) {
   const res = await fetch(`/data/data.json`);
   const client_posts = await res.json();
+  // return client_posts
   const serverData = await serverLoader();
   return [
     ...serverData,
-    ...client_posts.filter(cp => !serverData.find(sd => sd.post_id === cp.post_id))
+    ...client_posts.filter((cp: { post_id: string }) => !serverData.find(sd => sd.post_id === Number(cp.post_id)))
   ];
 }
 
