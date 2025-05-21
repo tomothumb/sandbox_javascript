@@ -37,5 +37,22 @@ export default function PageNav() {
                };
              }}
     >About</NavLink>
+
+    <NavLink to="/post/"
+             className={({ isActive, isPending, isTransitioning }) =>
+               [
+                 isPending ? "pending" : "",
+                 isActive ? "active" : "",
+                 isTransitioning ? "transitioning" : "",
+               ].join(" ")
+             }
+             style={({ isActive, isPending, isTransitioning }) => {
+               return {
+                 fontWeight: isActive ? "bold" : "",
+                 color: isPending ? "red" : "black",
+                 viewTransitionName: isTransitioning ? "slide" : "",
+               };
+             }}
+    >記事</NavLink>
   </nav>;
 }
