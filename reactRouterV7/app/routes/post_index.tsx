@@ -3,13 +3,25 @@ import PageNav from "~/components/PageNav";
 import posts from '../db/data.json';
 import { Link } from "react-router";
 
-export async function loader() {
-  const posts = fetchPosts();
+// export async function loader() {
+//   const posts = fetchPosts();
+//   return posts;
+//   // return {
+//   //   title: post.title,
+//   //   content: post.content
+//   // };
+// }
+
+export async function clientLoader({
+     // serverLoader,
+     params,
+   }: Route.ClientLoaderArgs) {
+  const res = await fetch(`/data/data.json`);
+  const posts = res.json();
+  console.log(posts);
   return posts;
-  // return {
-  //   title: post.title,
-  //   content: post.content
-  // };
+  // const serverData = await serverLoader();
+  // return { ...serverData, ...res.json() };
 }
 
 
